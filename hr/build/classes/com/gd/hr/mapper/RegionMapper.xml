@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gd.hr.mapper.RegionMapper">
+	
+	<insert id="insertRegion" parameterType="com.gd.hr.vo.Region">
+		INSERT INTO regions (region_id, region_name	) 
+		VALUES (#{regionId}, #{regionName})<!--  원래는 물음표ㅕ엿지.  -->
+
+		
+	</insert>	<!-- 자동호출게터  >> getgetget 으로 statement,... 채웟었대 -->
+
+	<select id="selectRegionList" resultType="com.gd.hr.vo.Region">
+		<!--  		└RegionMapper의 객체명					└패키지명 그대로 적기 -->
+		SELECT
+			region_id regionId, <!--  필드명이랑 같아야한대 아니면 알리언스 ㄱㄱ -->
+			region_name regionName
+		FROM regions
+		ORDER BY regionId ASC
+	</select> <!-- 자동호출세터 rs.get setsetsetset 해서 채움-->
+	
+	
+	<delete id="deleteRegion" parameterType="int"> <!--  반환타입이니까 ... int 주의. int inteager도 ㅇㅋ string은 String string 둘다 ㅇㅋ -->
+		DELETE FROM regions
+		WHERE region_id= #{regionId} <!--  받는 값이 ㅏㅎ나면 그냥 {}안에 아무변수 적어도 사실은 상ㄴ관 없대 -->
+	</delete>
+	
+	
+	<update id="updateRegion" parameterType="com.gd.hr.vo.Region">
+		UPDATE regions
+		SET
+		region_id=#{regionId},
+		region_name=#{regionName}
+		WHERE region_id=#{regionId}
+	</update>
+</mapper>
